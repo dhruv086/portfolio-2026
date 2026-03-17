@@ -11,13 +11,13 @@ const comments = [
     },
     {
         name: "Er. Nitish Kumar",
-        comment: "Having taught Harsh, I was consistently impressed by his strong coding skills, clear communication, and positive attitude. He always showed a genuine curiosity to learn and the ability to grasp complex concepts quickly. I assigned him a project which he completed exceptionally well—better than expected, with added creativity and attention to detail. Harsh is someone who not only performs but also uplifts the environment around him. I genuinely look forward to seeing him do great things in the future.",
+        comment: "Having taught dhruv, I was consistently impressed by his strong coding skills, clear communication, and positive attitude. He always showed a genuine curiosity to learn and the ability to grasp complex concepts quickly. I assigned him a project which he completed exceptionally well—better than expected, with added creativity and attention to detail. Dhruv is someone who not only performs but also uplifts the environment around him. I genuinely look forward to seeing him do great things in the future.",
         title: "Assistant Professor | Web Development | AI/ML Researcher",
         image: ""
     },
     {
         name: "Salil Batra",
-        comment: "I am pleased to recommend Harsh Agarwal, an exceptionally resourceful and intellectually curious B.Tech student, whose outstanding problem-solving abilities and coding proficiency set him apart from his peers. Harsh consistently demonstrates a deep understanding of core programming concepts and applies them effectively to solve complex problems. His ability to break down challenges into manageable components and implement efficient, well-structured solutions reflects a mature and methodical approach to software development.",
+        comment: "I am pleased to recommend dhruv Agarwal, an exceptionally resourceful and intellectually curious B.Tech student, whose outstanding problem-solving abilities and coding proficiency set him apart from his peers. dhruv consistently demonstrates a deep understanding of core programming concepts and applies them effectively to solve complex problems. His ability to break down challenges into manageable components and implement efficient, well-structured solutions reflects a mature and methodical approach to software development.",
         title: "Assistant Professor at Lovely Professional University | University Gold Medalist",
         image: ""
     },

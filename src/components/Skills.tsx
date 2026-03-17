@@ -124,7 +124,7 @@ const SkillsSection: FC = () => {
                                 )}
                             >
                                 It&apos;s not about the quantity, it&apos;s
-                                about the quality. I&apos;ve worked on projects
+                                about the quality. I&apos;ve worked on problems
                                 that matter.
                             </p>
                         )

@@ -7,7 +7,4 @@ export default defineConfig({
   build: {
     minify: "esbuild"
   },
-  server: {
-    allowedHosts: true
-  }
 })

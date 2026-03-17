@@ -6,7 +6,7 @@ export default function Comments({
     index,
     name,
     comment,
-    image,
+    image: _image,
     title = "Student at SRM University",
 }: {
     index: number;

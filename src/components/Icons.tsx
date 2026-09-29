@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy } from "react";
+import { useEffect, useRef, lazy } from "react";
 import { useScroll } from "motion/react";
 import * as m from "motion/react-m"
 import { tw } from "../../twind/twind";
@@ -10,24 +10,80 @@ const StarSVG = lazy(() => import("../svgs/star"));
 
 export default function Icons() {
   const { scrollY } = useScroll();
-  const [top, setTop] = useState("0px");
+  const iconsRef = useRef<HTMLDivElement>(null);
+  const photoRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    return scrollY.on("change", (latest) => {
-      setTop(`${latest * -0.3}px`);
+    let latestScroll = scrollY.get();
+    let frame = 0;
+
+    const paint = () => {
+      frame = 0;
+      const photoScroll = Math.max(latestScroll - 80, 0);
+      const holdOffset = Math.min(Math.max(latestScroll, 0), 80) * 0.3;
+      const dropProgress = Math.min(photoScroll / 220, 1);
+      const fadeProgress = Math.min(Math.max((photoScroll - 40) / 160, 0), 1);
+      const scale = photoScroll < 40
+        ? 1 + photoScroll * 0.002
+        : 1.08 - fadeProgress * 0.43;
+
+      if (iconsRef.current) {
+        iconsRef.current.style.transform = `translate3d(0, ${latestScroll * -0.3}px, 0)`;
+      }
+      if (photoRef.current) {
+        photoRef.current.style.transform = `translate3d(0, ${holdOffset + dropProgress * 420}px, 0) rotate(${dropProgress * 12}deg) scale(${scale})`;
+        photoRef.current.style.opacity = String(1 - fadeProgress);
+      }
+    };
+
+    paint();
+    const unsubscribe = scrollY.on("change", (latest) => {
+      latestScroll = latest;
+      if (!frame) frame = requestAnimationFrame(paint);
     });
+    return () => {
+      unsubscribe();
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, [scrollY]);
   
   return (
     <m.div
+    ref={iconsRef}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    style={{ top: top, willChange: "opacity, transform" }}
+    style={{ willChange: "opacity, transform" }}
     transition={{
       delay: 1.8,
       duration: 0.1,
     }}
     className="relative w-screen lg:h-[45vh] h-[70vh] mt-12 lg:mt-0"
   >
+    <m.div
+      className="absolute z-10 w-[250px] sm:w-[300px] md:w-[360px] lg:w-[410px] pointer-events-none"
+      initial={{ left: "45%", top: "100%", rotate: -12, scale: 0.5, opacity: 0 }}
+      animate={{
+        left: "50%",
+        top: window.innerWidth < 768 ? "-4%" : "-16%",
+        rotate: 0,
+        scale: 1,
+        opacity: 1,
+      }}
+      style={{ x: "-50%", willChange: "transform, opacity" }}
+      transition={{ duration: 1, delay: 1.8, ease: [0.25, 0.8, 0.25, 1] }}
+    >
+      <div
+        ref={photoRef}
+        style={{ willChange: "transform, opacity" }}
+      >
+        <img
+          src="/dhruv-cutout.png"
+          alt="Dhruv Agarwal"
+          draggable={false}
+          className="block w-full h-auto"
+        />
+      </div>
+    </m.div>
     <m.div
       className={tw(
         "absolute h-fit w-fit",

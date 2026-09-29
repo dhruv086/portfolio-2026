@@ -1,16 +1,18 @@
 import React from "react";
-const Taptik = React.lazy(() => import("./projects/Taptik"));
-const Animatrix = React.lazy(() => import("./projects/Animatrix"));
-const Vidaxa = React.lazy(() => import("./projects/Vidaxa"));
+const Equilibrium = React.lazy(() => import("./projects/Equilibrium"));
+const Gateway = React.lazy(() => import("./projects/Gateway"));
+const VidConference = React.lazy(() => import("./projects/VidConference"));
+const SyntaxRush = React.lazy(() => import("./projects/SyntaxRush"));
 import { tw } from "../../twind/twind";
 import * as m from "motion/react-m"
 
 const Projects: React.FC = () => {
     return (
         <div>
-            <Taptik />
-            <Animatrix />
-            <Vidaxa />
+            <Equilibrium />
+            <Gateway />
+            <VidConference />
+            <SyntaxRush />
             <div className={tw("mt-3 flex items-center justify-center")}>
                 <m.a
                     href="https://github.com/dhruv086?tab=repositories"

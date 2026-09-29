@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import {motion} from "motion/react"
 import { tw } from "../../twind/twind";
 import { FaAt } from "react-icons/fa6";
-import { AiFillSmile } from "react-icons/ai";
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHoveringButton, setIsHoveringButton] = useState(false);
-  const [isSmiley, setIsSmiley] = useState(false);
   const [textHeight, setTextHeight] = useState(0);
   const [isClicking, setIsClicking] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -29,19 +27,7 @@ const CustomCursor = () => {
       setTextHeight(0); // Reset text height when hovering over a button
     };
 
-    const handleSmiley = () => {
-      setIsSmiley(true);
-      setIsHoveringButton(true);
-      setTextHeight(0); // Reset text height when hovering over a button
-    };
-
     const handleMouseLeaveButton = () => {
-      setIsHoveringButton(false);
-      setIsRed(false);
-    };
-
-    const handleLeaveSmiley = () => {
-      setIsSmiley(false);
       setIsHoveringButton(false);
       setIsRed(false);
     };
@@ -74,11 +60,6 @@ const CustomCursor = () => {
     document.querySelectorAll("button").forEach((el) => {
       el.addEventListener("mouseenter", handleMouseEnterButton);
       el.addEventListener("mouseleave", handleMouseLeaveButton);
-    });
-
-    document.querySelectorAll("img#marban").forEach((el) => {
-      el.addEventListener("mouseenter", handleSmiley);
-      el.addEventListener("mouseleave", handleLeaveSmiley);
     });
 
     document.querySelectorAll("a").forEach((el) => {
@@ -178,9 +159,8 @@ const CustomCursor = () => {
       }}
     >
       {isHoveringButton && (
-        isSmiley ? <AiFillSmile className={tw(`text-color text-3xl`)} /> : (
-          isRed
-            ? <FaAt className={tw(`${isRed ? "text-red" : "text-color"}`)} />
+        isRed
+            ? <FaAt className={tw("text-red")} />
             : (
               <motion.svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +170,7 @@ const CustomCursor = () => {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
-                className={tw(`text-xl ${isRed ? "text-red" : "text-color"}`)}
+                className={tw("text-xl text-color")}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 initial={{ x: 0, y: 0 }}
@@ -204,7 +184,6 @@ const CustomCursor = () => {
                 <polyline points="7 7 17 7 17 17"></polyline>
               </motion.svg>
             )
-        )
       )}
     </motion.div>
   );

@@ -1,21 +1,21 @@
-import React, { useRef } from "react";
+import React from "react";
 import { tw } from "../../../twind/twind";
 import * as m from "motion/react-m"
+import ProjectReveal from "./ProjectReveal";
 
-const Animatrix: React.FC = () => {
-  const numRef = useRef<HTMLDivElement>(null);
+const SyntaxRush: React.FC = () => {
   return (
+    <ProjectReveal>
     <div
       className={tw(
-        "bg-background mx-auto flex items-start gap-2 justify-end flex-col rounded-3xl aspect-[16/10] p-4 sm:p-8 md:p-16 lg:p-24 py-12 sm:py-24 md:py-36 lg:py-32",
+        "bg-background flex items-start gap-2 justify-end flex-col p-4 sm:p-8 md:p-16 lg:p-24 py-12 sm:py-24 md:py-36 lg:py-32",
       )}
       style={{
-        width: "100vw",
-        background: "linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)",
+        width: "100%",
+        backgroundImage: "linear-gradient(to top, rgba(4, 9, 30, .97), rgba(4, 9, 30, .16) 65%), url('/projects/syntax-rush.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
-        borderRadius: "0px",
+        height: "100%",
       }}
     >
       <div
@@ -37,9 +37,9 @@ const Animatrix: React.FC = () => {
               delay: 0.2,
             }}
           >
-            Animatrix
+            Syntax Rush
             <m.a
-              href="https://animatrix.onrender.com/"
+              href="https://syntaxrush-frontend.onrender.com"
               target="_blank"
               rel="noopener noreferrer"
               className={tw(
@@ -84,7 +84,7 @@ const Animatrix: React.FC = () => {
               </m.svg>
             </m.a>
             <m.a
-              href="https://github.com/dhruv086/animatrix"
+              href="https://github.com/dhruv086/syntax-rush"
               target="_blank"
               rel="noopener noreferrer"
               className={tw(
@@ -120,7 +120,7 @@ const Animatrix: React.FC = () => {
               delay: 0.4,
             }}
           >
-            High-performance animated UI running at 60 FPS.
+            Real-time multiplayer coding sessions with live battles and rankings.
           </m.p>
           <m.div
             className={tw("flex flex-wrap gap-2 mt-3")}
@@ -128,7 +128,7 @@ const Animatrix: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.6 }}
           >
-            {["React", "Tailwind CSS", "GSAP", "Framer Motion", "React Icons"].map(tag => (
+            {["Next.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "WebSockets", "Redis", "JWT"].map(tag => (
               <span key={tag} className={tw("text-xs px-3 py-1 rounded-full border border-white/40 text-white/70")}>
                 {tag}
               </span>
@@ -136,27 +136,27 @@ const Animatrix: React.FC = () => {
           </m.div>
         </div>
         <div
-          ref={numRef}
           className={tw(
             "flex gap-8 items-center border-t border-white/30 w-full pt-3 md:!w-fit lg:!border-t-0 lg:border-l lg:border-white/30 lg:!pt-0 lg:pl-6 justify-between",
           )}
         >
           <div className={tw("min-w-[100px]")}>
-            <p className={tw("text-5xl font-semibold text-white")}>Jun</p>
+            <p className={tw("text-5xl font-semibold text-white")}>10+</p>
             <p className={tw("opacity-40 text-white text-sm -mt-1 max-w-[400px]")}>
-              2025
+              REST endpoints
             </p>
           </div>
           <div className={tw("min-w-[100px]")}>
-            <p className={tw("text-5xl font-semibold text-white")}>60</p>
+            <p className={tw("text-5xl font-semibold text-white")}>1v1</p>
             <p className={tw("opacity-40 text-white text-sm -mt-1 max-w-[400px]")}>
-              FPS
+              Coding battles
             </p>
           </div>
         </div>
       </div>
     </div>
+    </ProjectReveal>
   );
 };
 
-export default Animatrix;
+export default SyntaxRush;

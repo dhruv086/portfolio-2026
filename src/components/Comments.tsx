@@ -1,19 +1,16 @@
 import { tw } from "../../twind/twind";
 import * as m from "motion/react-m";
-// import { LazyImage } from "./CommentSection";
 
 export default function Comments({
     index,
     name,
     comment,
-    image: _image,
-    title = "Student at SRM University",
+    title,
 }: {
     index: number;
     name: string;
     comment: string;
-    image?: string; // reserved for future use
-    title?: string;
+    title: string;
 }) {
     return (
         <m.div
@@ -45,13 +42,6 @@ export default function Comments({
             viewport={{ once: true, amount: 0.3 }}
         >
             <div className={tw("flex gap-4 items-center justify-start")}>
-                {/* <LazyImage
-                    src={image ?? ""}
-                    alt={name}
-                    className={tw(
-                        "w-12 h-12 object-cover md:w-16 md:h-16 border border-color rounded-full bg-color",
-                    )}
-                /> */}
                 <div>
                     <h1
                         className={tw(

@@ -44,7 +44,7 @@ export default function LastSegment() {
                         "text-4xl font-semibold text-center md:text-5xl mt-4",
                     )}
                 >
-                    Love at first sight
+                    Built with care, from the backend up
                 </m.h1>
                 <m.p
                     initial={{ opacity: 0, filter: "blur(10px)" }}
@@ -59,9 +59,9 @@ export default function LastSegment() {
                         "text-center max-w-[600px] w-[80vw] md:w-full text-sm md:text-base",
                     )}
                 >
-                    Pouring passion and precision into every design to create
-                    experiences that are visually captivating and intuitively
-                    engaging
+                    From multi-agent research and secure API access to live
+                    video and coding battles, I build for correctness,
+                    performance, and the people using the product.
                 </m.p>
             </div>
             <m.a

@@ -16,37 +16,39 @@ const skillsData = [
         type: "Languages",
         items: [
             "JavaScript",
+            "TypeScript",
             "Python",
-            "Java",
-            "C",
             "C++",
+            "SQL",
         ],
     },
     {
         type: "Frameworks",
         items: [
             "React",
+            "Next.js",
             "Node.js",
             "Express.js",
+            "Django REST Framework",
             "Tailwind CSS",
-            "Socket.io",
-            "GSAP",
-            "Framer Motion",
+            "LangGraph.js",
+            "WebSockets",
         ],
     },
     {
         type: "Tools",
         items: [
             "MongoDB",
+            "PostgreSQL",
             "MySQL",
+            "Redis",
+            "LiveKit",
+            "Docker",
             "Git",
             "GitHub",
             "Postman",
-            "Cloudinary",
-            "Google Cloud",
-            "Azure",
             "JWT",
-            "Bcrypt",
+            "RBAC",
         ],
     },
 ];
@@ -109,10 +111,10 @@ const SkillsSection: FC = () => {
                             "opacity-40 text-color text-base mt-3 max-w-[400px]",
                         )}
                     >
-                        Passionate about building full-stack applications and
-                        scalable backend systems. From real-time chat apps to
-                        video platforms, I craft solutions that are both
-                        performant and practical. Here&apos;s what I bring to the table!
+                        I build full-stack applications, secure APIs, and
+                        real-time systems. My recent projects combine AI
+                        orchestration, resilient backends, and practical
+                        interfaces.
                     </p>
                 </div>
                 <div className={tw("")} ref={numRef}>
@@ -144,10 +146,10 @@ const SkillsSection: FC = () => {
                             <NumberFlow
                                 value={useInView(numRef)
                                     ? currentSection == 0
-                                        ? 550
+                                        ? 600
                                         : currentSection == 1
                                             ? 490
-                                            : 10
+                                            : 4
                                     : 0}
                                 className={tw("text-6xl font-semibold text-color")}
                                 format={{
@@ -162,20 +164,20 @@ const SkillsSection: FC = () => {
                                 )}
                             >
                                 {currentSection == 0
-                                    ? "LeetCode problems"
+                                    ? "DSA problems solved"
                                     : currentSection == 1
                                         ? "day streak"
-                                        : "projects built"}
+                                        : "featured projects"}
                             </p>
                         </div>
                         <div className={tw("min-w-[100px]")}>
                             <NumberFlow
                                 value={useInView(numRef)
                                     ? currentSection == 0
-                                        ? 20
+                                        ? 69
                                         : currentSection == 1
-                                            ? 8.00
-                                            : 7.83
+                                            ? 18
+                                            : 7.79
                                     : 0}
                                 className={tw("text-6xl font-semibold text-color")}
                                 format={currentSection === 0 ? {
@@ -192,9 +194,9 @@ const SkillsSection: FC = () => {
                                 )}
                             >
                                 {currentSection == 0
-                                    ? "skills mastered"
+                                    ? "gateway tests passing"
                                     : currentSection == 1
-                                        ? "Current TGPA"
+                                        ? "gateway REST endpoints"
                                         : "Overall CGPA"}
                             </p>
                         </div>

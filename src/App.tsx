@@ -16,8 +16,10 @@ const Footer = lazy(() => import("./components/Footer"));
 const Icons = lazy(() => import("./components/Icons"));
 
 function App() {
-  const { scrollY } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
   const [bgPosition, setBgPosition] = useState("center top");
+  const headerDark = scrollYProgress.get() > 0.997;
+  const headerHidden = scrollYProgress.get() > 0.95;
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -41,7 +43,7 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             style={{
-              color: useScroll().scrollYProgress.get() > 0.997 ? "var(--background)" : "var(--color)",
+              color: headerDark ? "var(--background)" : "var(--color)",
               transition: "color 0.3s ease",
               willChange: "opacity",
             }}
@@ -52,15 +54,15 @@ function App() {
           <div className="flex items-center gap-4">
             <m.div
               className={tw("text-xs md:text-sm hidden text-right md:flex items-center gap-1")}
-              animate={{ x: useScroll().scrollYProgress.get() > 0.95 ? 100 : 0 }}
+              animate={{ x: headerHidden ? 100 : 0 }}
               style={{
                 willChange: "transform",
               }}
-              transition={{ duration: 0.3, delay: useScroll().scrollYProgress.get() > 0.95 ? 0.2 : 0, ease: [0.645, 0.045, 0.355, 1] }}
+              transition={{ duration: 0.3, delay: headerHidden ? 0.2 : 0, ease: [0.645, 0.045, 0.355, 1] }}
             >
               <p
                 style={{
-                  color: useScroll().scrollYProgress.get() > 0.997 ? "var(--background)" : "var(--color)",
+                  color: headerDark ? "var(--background)" : "var(--color)",
                   transition: "color 0.3s ease",
                 }}
               >
@@ -69,13 +71,13 @@ function App() {
               <span
                 className={tw("h-1 w-1 rounded-full mx-3")}
                 style={{
-                  background: useScroll().scrollYProgress.get() > 0.997 ? "var(--background)" : "var(--color)",
+                  background: headerDark ? "var(--background)" : "var(--color)",
                   transition: "color 0.3s ease",
                 }}
               />
               <p
                 style={{
-                  color: useScroll().scrollYProgress.get() > 0.997 ? "var(--background)" : "var(--color)",
+                  color: headerDark ? "var(--background)" : "var(--color)",
                   transition: "color 0.3s ease",
                 }}
               >
@@ -89,7 +91,7 @@ function App() {
             </m.div>
             <div>
               <m.a
-                href="/LPU_Dhruv_cv.pdf"
+                href="/Dhruv_Agarwal_Resume_LPU.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={tw("md:border-l p-0 border-color md:py-1 md:px-4 font-semibold cursor-pointer")}
@@ -102,8 +104,8 @@ function App() {
                   willChange: "transform, opacity",
                 }}
                 animate={{
-                  x: useScroll().scrollYProgress.get() > 0.95 ? 100 : 0,
-                  opacity: useScroll().scrollYProgress.get() > 0.95 ? 0 : 1,
+                  x: headerHidden ? 100 : 0,
+                  opacity: headerHidden ? 0 : 1,
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -186,7 +188,7 @@ function App() {
         <div className={tw("lg:py-36 relative flex items-center justify-center py-24 px-12 max-w-screen-xl mx-auto w-full h-screen")}>
           <Corner />
           <Paragraph
-            text={`I am Dhruv Agarwal, a Computer Science student at Lovely Professional University. I specialize in building full-stack web applications and scalable backend systems. {} From real-time chat apps to RESTful APIs, I craft technology that is both performant and user-friendly.`}
+            text={`I'm Dhruv Agarwal — I build backend systems where correctness and concurrency actually matter: a five-node LangGraph.js multi-agent research tool, a JWT/RBAC LLM gateway with concurrency-safe MongoDB billing across 18 REST endpoints, a LiveKit video app, and a Redis pub/sub real-time coding platform.`}
           />
         </div>
         <div className={tw("max-w-screen-xl mx-12 px-4 md:px-12 lg:!mx-auto py-16 mb-6 md:!mb-24 min-h-screen flex flex-col md:!flex-row items-start justify-between gap-6")}>

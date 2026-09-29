@@ -26,6 +26,27 @@ export default function Footer() {
                 "h-screen bg-red w-screen z-20 relative text-background p-8 pt-24 md:p-24 flex flex-col items-end justify-start gap-6",
             )}
         >
+            <m.img
+                src="/dhruv-camera-cutout.png"
+                alt="Dhruv Agarwal holding a camera"
+                initial={{ opacity: 0, y: 60, scale: 0.88 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
+                style={{
+                    position: "absolute",
+                    left: "clamp(1.5rem, 8vw, 10rem)",
+                    bottom: "max(6rem, 11vh)",
+                    width: "clamp(200px, 30vw, 540px)",
+                    height: "auto",
+                    maxHeight: "70vh",
+                    objectFit: "contain",
+                    objectPosition: "bottom left",
+                    filter: "drop-shadow(0 -4px 0 black) drop-shadow(-4px 0 0 black) drop-shadow(4px 0 0 black)",
+                    pointerEvents: "none",
+                    willChange: "transform, opacity",
+                }}
+            />
             <m.h1
                 initial={{ opacity: 0, filter: "blur(10px)" }}
                 whileInView={{ opacity: 1, filter: "blur(0px)" }}
@@ -142,7 +163,7 @@ export default function Footer() {
                 exit={{ opacity: 0, filter: "blur(10px)" }}
             >
                 <m.a
-                    href="/LPU_Dhruv_cv.pdf"
+                    href="/Dhruv_Agarwal_Resume_LPU.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={tw(
@@ -188,11 +209,6 @@ export default function Footer() {
 
             <div className="absolute left-0 px-8 pl-32 md:pl-24 md:px-24 w-full bottom-24 flex gap-12 items-center justify-between w-full">
                 <hr className="w-full border-2 border-background" />
-                {/* <img
-                    src="/svgs/sign.svgdfd"
-                    alt="Signature"
-                    className="h-12"
-                /> */}
             </div>
         </footer>
     );

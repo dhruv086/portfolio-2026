@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useTransform, useScroll } from "framer-motion";
+import React, { useEffect, useMemo, useState } from "react";
+import { useScroll } from "framer-motion";
 import * as m from "motion/react-m"
 import { tw } from "../../twind/twind";
 
@@ -9,24 +9,23 @@ interface ParagraphProps {
 
 const Paragraph: React.FC<ParagraphProps> = ({ text }) => {
   const { scrollY } = useScroll();
-  const words = text.split(" ");
+  const words = useMemo(() => text.split(" "), [text]);
   const [opacityValues, setOpacityValues] = useState<number[]>(
     new Array(words?.length).fill(0.1),
   );
-  const transforms = words.map((_, index) => {
-    const windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
-    const start = windowHeight * (1.2 + index * 0.05) / 4;
-    const end = windowHeight * (1.2 + index * 0.05) / 3;
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    return useTransform(scrollY, [start, end], [0.1, 1]);
-  });
-
   useEffect(() => {
-    const unsubscribe = scrollY.on("change", () => {
-      const newOpacityValues = transforms.map((transform) => transform.get());
-      setOpacityValues(newOpacityValues);
-    });
+    const updateOpacity = (latest: number) => {
+      const windowHeight = window.innerHeight;
+      setOpacityValues(words.map((_, index) => {
+        const start = windowHeight * (1.2 + index * 0.05) / 4;
+        const end = windowHeight * (1.2 + index * 0.05) / 3;
+        const progress = Math.min(Math.max((latest - start) / (end - start), 0), 1);
+        return 0.1 + progress * 0.9;
+      }));
+    };
 
+    updateOpacity(scrollY.get());
+    const unsubscribe = scrollY.on("change", updateOpacity);
     return () => unsubscribe();
   }, [scrollY, words]);
 
@@ -38,7 +37,6 @@ const Paragraph: React.FC<ParagraphProps> = ({ text }) => {
     >
       <span className={tw('inline-block md:w-[200px] w-[100px]')}>&nbsp;</span>
       {words.map((word, index) => (
-        word === "{}" ? <><br /><br /></> :
         <m.span
           key={index}
           style={{ opacity: opacityValues[index] }}

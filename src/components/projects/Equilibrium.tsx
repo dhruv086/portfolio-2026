@@ -1,56 +1,21 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React from "react";
 import { tw } from "../../../twind/twind";
-import { useScroll, useTransform } from "framer-motion";
 import * as m from "motion/react-m"
+import ProjectReveal from "./ProjectReveal";
 
-const Taptik: React.FC = () => {
-  const divRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
-  const [divTop, setDivTop] = useState(0);
-  const [divHeight, setDivHeight] = useState(0);
-  const numRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    if (divRef.current) {
-      setDivTop(divRef.current.offsetTop);
-      setDivHeight(divRef.current.offsetHeight);
-    }
-  }, [divRef]);
-
-  const divCenter = React.useMemo(() => divTop + divHeight * 0.5, [divTop, divHeight]);
-
-  const width = useTransform(scrollY, [
-    divCenter - 500,
-    divCenter + 100,
-  ], [
-    "70vw",
-    "100vw",
-  ], { clamp: true });
-  const height = useTransform(scrollY, [
-    divCenter - 500,
-    divCenter + 100,
-  ], [
-    "70vh",
-    "100vh",
-  ], { clamp: true });
-  const borderRadius = useTransform(scrollY, [
-    divCenter - 500,
-    divCenter + 100,
-  ], ["38px", "0px"], { clamp: true });
-
+const Equilibrium: React.FC = () => {
   return (
+    <ProjectReveal first>
     <m.div
-      ref={divRef}
       className={tw(
-        "bg-background mx-auto flex items-start gap-2 justify-end flex-col rounded-3xl aspect-[16/10] mt-12 p-4 sm:p-8 md:p-16 lg:p-24 py-12 sm:py-24 md:py-36 lg:py-32",
+        "bg-background flex items-start gap-2 justify-end flex-col p-4 sm:p-8 md:p-16 lg:p-24 py-12 sm:py-24 md:py-36 lg:py-32",
       )}
       style={{
-        width: width.get(),
-        background: "linear-gradient(135deg, #0f0c29, #302b63, #24243e)",
+        width: "100%",
+        backgroundImage: "linear-gradient(to top, rgba(9, 7, 22, .96), rgba(9, 7, 22, .18) 65%), url('/projects/equilibrium.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: height.get(),
-        borderRadius: borderRadius.get(),
+        height: "100%",
       }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
     >
@@ -73,9 +38,9 @@ const Taptik: React.FC = () => {
               delay: 0.2,
             }}
           >
-            Taptik
+            Equilibrium
             <m.a
-              href="https://taptik.onrender.com/"
+              href="https://equilibrium-ai-uhay.onrender.com"
               target="_blank"
               rel="noopener noreferrer"
               className={tw(
@@ -120,7 +85,7 @@ const Taptik: React.FC = () => {
               </m.svg>
             </m.a>
             <m.a
-              href="https://github.com/dhruv086/taptik"
+              href="https://github.com/dhruv086/AI-Investment-Research-Agent"
               target="_blank"
               rel="noopener noreferrer"
               className={tw(
@@ -156,7 +121,7 @@ const Taptik: React.FC = () => {
               delay: 0.4,
             }}
           >
-            Real-time chat, low-latency, end-to-end encrypted.
+            Multi-agent investment research with live market data and risk-based verdicts.
           </m.p>
           <m.div
             className={tw("flex flex-wrap gap-2 mt-3")}
@@ -164,7 +129,7 @@ const Taptik: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.6 }}
           >
-            {["React", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Socket.io", "JWT", "Cloudinary"].map(tag => (
+            {["React", "Node.js", "Express.js", "LangGraph.js", "Groq API", "Tavily API", "MongoDB"].map(tag => (
               <span key={tag} className={tw("text-xs px-3 py-1 rounded-full border border-white/40 text-white/70")}>
                 {tag}
               </span>
@@ -172,27 +137,27 @@ const Taptik: React.FC = () => {
           </m.div>
         </div>
         <div
-          ref={numRef}
           className={tw(
             "flex gap-8 items-center border-t border-white/30 w-full pt-3 md:!w-fit lg:!border-t-0 lg:border-l lg:border-white/30 lg:!pt-0 lg:pl-6 justify-between",
           )}
         >
           <div className={tw("min-w-[100px]")}>
-            <p className={tw("text-5xl font-semibold text-white")}>Jul</p>
+            <p className={tw("text-5xl font-semibold text-white")}>AI</p>
             <p className={tw("opacity-40 text-white text-sm -mt-1 max-w-[400px]")}>
-              2025
+              Research
             </p>
           </div>
           <div className={tw("min-w-[100px]")}>
-            <p className={tw("text-5xl font-semibold text-white")}>FS</p>
+            <p className={tw("text-5xl font-semibold text-white")}>5</p>
             <p className={tw("opacity-40 text-white text-sm -mt-1 max-w-[400px]")}>
-              Full Stack
+              Graph nodes
             </p>
           </div>
         </div>
       </div>
     </m.div>
+    </ProjectReveal>
   );
 };
 
-export default Taptik;
+export default Equilibrium;
